@@ -134,25 +134,25 @@ function main()
 
         vals = split(strip(line))
 
-        # Insert two 0.0 after column 4
+        # Insert two 0.0 after column 3
+        insert!(vals, 4, "0.0")
         insert!(vals, 5, "0.0")
-        insert!(vals, 6, "0.0")
 
-        # MAG_AUTO is now column 7
-        mag_auto = parse(Float64, vals[7])
+        # MAG_AUTO is now column 6
+        mag_auto = parse(Float64, vals[6])
 
     # Absolute magnitude
         abs_mag = mag_auto - DM
 
     # Insert ABS_MAG immediately after MAG_AUTO
-        insert!(vals, 8, @sprintf("%.4f", abs_mag))
+        insert!(vals, 7, @sprintf("%.4f", abs_mag))
 
 
         # Insert four 0.0 after original MAG_AUTO
+        insert!(vals, 8,  "0.0")
         insert!(vals, 9,  "0.0")
-        insert!(vals, 10,  "0.0")
+        insert!(vals, 10, "0.0")
         insert!(vals, 11, "0.0")
-        insert!(vals, 12, "0.0")
 
         formatted = join(vals, "   ")
 
@@ -164,8 +164,8 @@ function main()
 
 sort!(modified_selected, by = line -> begin
     vals = split(line)
-    parse(Float64, vals[7])   # MAG_AUTO
-end
+    parse(Float64, vals[6])   # MAG_AUTO
+end)
 
     # Write output catalog
 
